@@ -1,0 +1,20 @@
+version: '2'
+services:
+  web:
+    image: sonatype/nexus3
+    ports:
+      - "8081:8081"
+      - "5000:5000"
+      - "5001:5001"
+    networks:
+      - registry
+    env_file:
+      - container.env
+      - base.env
+    volumes:
+      - "nexus-data:/nexus-data"
+networks:
+  registry:
+    driver: bridge
+volumes:
+  nexus-data:
